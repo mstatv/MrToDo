@@ -1,7 +1,8 @@
 # MrToDo
 ## Desktop 'ToDo' Application
 -------------------------------
-### Build In Process*
+### *Build In Process*
+-------------------------------
 MrToDo is a locally hosted 'ToDo' desktop application.
 * Users will be able to register for access to the application
 * Users can login to access their specific 'ToDo' list
@@ -11,7 +12,6 @@ MrToDo is a locally hosted 'ToDo' desktop application.
 
 
 ## Built With
----------------------------------------
 * [Java](https://www.oracle.com/java/technologies/javase-downloads.html)
 * [JavaFX](https://gluonhq.com/products/javafx/#latest)
 * [JFoenix](https://github.com/jfoenixadmin/JFoenix)
