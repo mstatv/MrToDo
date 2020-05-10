@@ -1,7 +1,7 @@
 # MrToDo
 ## Desktop 'ToDo' Application
 -------------------------------
-### *Build In Process*
+### *Build In Process* (will update readme file as progress continues)
 -------------------------------
 MrToDo is a locally hosted 'ToDo' desktop application.
 * Users will be able to register for access to the application
