@@ -1,9 +1,8 @@
 package main.mrtodoDB;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import main.constrClasses.User;
+
+import java.sql.*;
 
 /**
  * Class for Database Processes
@@ -31,7 +30,8 @@ public class DBHandler extends DBconfig {
     }
 
     // write information to database
-    public void registerUser(String first, String last, String username, String pass) {
+    // using User class as parameter
+    public void registerUser(User user) {
 
         // using DB constants creating statement to pass through to database
         String write = "INSERT INTO " + DBconstants.MRTODO_USERS + "(" + DBconstants.U_FIRSTNAME + ","
@@ -43,10 +43,10 @@ public class DBHandler extends DBconfig {
             PreparedStatement pStatement = getDBConnection().prepareStatement(write);
 
             // statement -> set string for db entry
-            pStatement.setString(1, first);
-            pStatement.setString(2, last);
-            pStatement.setString(3, username);
-            pStatement.setString(4, pass);
+            pStatement.setString(1, user.getFirstName());
+            pStatement.setString(2, user.getLastName());
+            pStatement.setString(3, user.getUserName());
+            pStatement.setString(4, user.getUserPassword());
 
             pStatement.executeUpdate();
 
@@ -57,6 +57,44 @@ public class DBHandler extends DBconfig {
         }
 
 
+    }
+
+    // method to get a valid user
+    // will print to console if user is required to implement a valid user
+    public ResultSet getValidUser (User user) {
+
+        ResultSet resSet = null;
+
+        if (!user.getUserName().equals("") || !user.getUserPassword().equals("")) {
+
+            // QUERY selecting all from MrToDo_users table where user = * and pass = *
+            String que = "SELECT * FROM " + DBconstants.MRTODO_USERS + " WHERE " + DBconstants.U_USERNAME + "=? AND " +
+                    DBconstants.U_PASSWORD + "=?";
+
+            // try/catch for errors
+            try {
+                PreparedStatement pStatement = getDBConnection().prepareStatement(que);
+
+                pStatement.setString(1, user.getUserName());
+                pStatement.setString(1, user.getUserPassword());
+
+                // execution of pStatement
+                resSet = pStatement.executeQuery();
+
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        } else {
+
+            System.out.println("Enter a valid username and password!");
+
+        }
+
+        // return query results
+        return resSet;
     }
 
 

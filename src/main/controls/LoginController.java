@@ -3,14 +3,19 @@ package main.controls;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.mysql.cj.protocol.Resultset;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.constrClasses.User;
+import main.mrtodoDB.DBHandler;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController {
@@ -33,6 +38,9 @@ public class LoginController {
     @FXML
     private JFXButton registerButton;
 
+    // init DBhandler
+    private DBHandler dbHandler;
+
     @FXML
     void initialize() {
         assert userLoginField != null : "fx:id=\"userLoginField\" was not injected: check your FXML file 'login.fxml'.";
@@ -45,6 +53,40 @@ public class LoginController {
         String strUserName = userLoginField.getText().trim();
         String strPassword = passLoginField.getText().trim();
 
+        User user = new User();
+        user.setUserName(strUserName);
+        user.setUserPassword(strPassword);
+
+        // login button action
+        loginButton.setOnAction(event -> {
+
+            // retrieve valid user from DB
+            ResultSet uRow = dbHandler.getValidUser(user);
+
+            // count variable
+            int count = 0;
+
+            try {
+                while (uRow.next()) {
+
+                    count++;
+
+                }
+                if (count == 1) {
+                    // success login to console
+                    System.out.println("Success! Let's get 'ToDo'in");
+
+                }
+
+            } catch (SQLException se) {
+
+                se.printStackTrace();
+
+            }
+
+        });
+
+        // register button action
         registerButton.setOnAction(event -> {
             // to register screen
             registerButton.getScene().getWindow().hide();
@@ -58,6 +100,7 @@ public class LoginController {
                 ex.printStackTrace();
             }
 
+            // prepare and show second stage (register screen)
             Parent root = loader.getRoot();
             Stage secStage = new Stage();
             secStage.setScene(new Scene(root));
@@ -65,28 +108,6 @@ public class LoginController {
 
         });
 
-        // actions to be taken when login button is clicked
-        loginButton.setOnAction(event -> {
-
-            // if entered username and password are not empty
-            // feed user strUserName and strPassword to
-            // user login method below
-            if (!strUserName.equals("") || !strPassword.equals("")) {
-
-                userLogin(strUserName, strPassword);
-
-            } else {
-                System.out.println("Error at User Login.");
-            }
-        });
-
     }
 
-    private void userLogin(String user, String password) {
-       // check DB -> does user exist?
-       // if user exists --> open add ToDo screen
-       //
-        
-
-    }
 }
