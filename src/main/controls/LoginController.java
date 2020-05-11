@@ -131,7 +131,8 @@ public class LoginController {
         });
 
         }
-
+        
+    // open Add ToDo screen
     private void goToAddToDo() {
         
         // to register screen
