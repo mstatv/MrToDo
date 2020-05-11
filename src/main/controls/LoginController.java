@@ -39,7 +39,7 @@ public class LoginController {
     private JFXButton registerButton;
 
     // init DBhandler
-    private DBHandler dbHandler;
+    private DBHandler dbHandler = new DBHandler();
 
     @FXML
     void initialize() {
@@ -48,17 +48,17 @@ public class LoginController {
         assert loginButton != null : "fx:id=\"loginButton\" was not injected: check your FXML file 'login.fxml'.";
         assert registerButton != null : "fx:id=\"signupButton\" was not injected: check your FXML file 'login.fxml'.";
 
-        // variables for user name and password
-        // retrieved from login screen
-        String strUserName = userLoginField.getText().trim();
-        String strPassword = passLoginField.getText().trim();
-
-        User user = new User();
-        user.setUserName(strUserName);
-        user.setUserPassword(strPassword);
-
         // login button action
         loginButton.setOnAction(event -> {
+
+            // variables for user name and password
+            // retrieved from login screen
+            String strUserName = userLoginField.getText().trim();
+            String strPassword = passLoginField.getText().trim();
+
+            User user = new User();
+            user.setUserName(strUserName);
+            user.setUserPassword(strPassword);
 
             // retrieve valid user from DB
             ResultSet uRow = dbHandler.getValidUser(user);

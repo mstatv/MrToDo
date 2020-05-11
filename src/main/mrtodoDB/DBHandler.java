@@ -76,7 +76,7 @@ public class DBHandler extends DBconfig {
                 PreparedStatement pStatement = getDBConnection().prepareStatement(que);
 
                 pStatement.setString(1, user.getUserName());
-                pStatement.setString(1, user.getUserPassword());
+                pStatement.setString(2, user.getUserPassword());
 
                 // execution of pStatement
                 resSet = pStatement.executeQuery();
