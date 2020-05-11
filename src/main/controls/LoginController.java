@@ -9,8 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.constrClasses.ToDo;
 import main.constrClasses.User;
 import main.mrtodoDB.DBHandler;
+import main.screenAnimations.ErrorShaker;
 
 import java.io.IOException;
 import java.net.URL;
@@ -71,10 +73,30 @@ public class LoginController {
 
                     count++;
 
+                    String uFname = uRow.getString("firstName");
+                    System.out.println("User: " + uFname);
+
                 }
                 if (count == 1) {
                     // success login to console
-                    System.out.println("Success! Let's get 'ToDo'in");
+                    System.out.println("Success ! Let's get ' ToDo 'in");
+                    goToAddToDo();
+
+                } else {
+                    // failed login attempt...
+
+                    // shake the username login field error effect
+                    ErrorShaker uNameErrorShaker = new ErrorShaker(userLoginField);
+                    uNameErrorShaker.errorShake();
+
+                    // shake the password login field error effect
+                    ErrorShaker uPassErrorShaker = new ErrorShaker(passLoginField);
+                    uPassErrorShaker.errorShake();
+
+                    // shake login button
+                    ErrorShaker loginButtonErrorShaker = new ErrorShaker(loginButton);
+                    loginButtonErrorShaker.errorShake();
+
 
                 }
 
@@ -107,6 +129,28 @@ public class LoginController {
             secStage.showAndWait();
 
         });
+
+        }
+
+    private void goToAddToDo() {
+        
+        // to register screen
+        registerButton.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/main/screens/addToDo.fxml"));
+
+        // try/catch for errors
+        try {
+            loader.load();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        // prepare and show second stage (register screen)
+        Parent root = loader.getRoot();
+        Stage secStage = new Stage();
+        secStage.setScene(new Scene(root));
+        secStage.showAndWait();
 
     }
 
