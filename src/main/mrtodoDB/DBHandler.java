@@ -20,9 +20,9 @@ public class DBHandler extends DBconfig {
     public Connection getDBConnection() throws ClassNotFoundException, SQLException {
 
         // creates string URL using variables from DBconfig file
-        String connectionParam = "jdbc:mysql://" + host + ":" + port + "/" + name;
+        String connectionParam = "jdbc:mysql://" + host + ":" + port + "/" + name + "?useTimezone=true&serverTimezone=UTC" ;
 
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
         connectToDB = DriverManager.getConnection(connectionParam, user, password);
 
@@ -36,10 +36,20 @@ public class DBHandler extends DBconfig {
         // using DB constants creating statement to pass through to database
         String write = "INSERT INTO " + DBconstants.MRTODO_USERS + "(" + DBconstants.U_FIRSTNAME + ","
                 + DBconstants.U_LASTNAME + "," + DBconstants.U_USERNAME + "," + DBconstants.U_PASSWORD + ")"
-                + "VALUES(?,?,?,?)";
+                + "VALUES(?, ?, ?, ?)";
 
         try {
+
             PreparedStatement pStatement = getDBConnection().prepareStatement(write);
+
+            // statement -> set string for db entry
+            pStatement.setString(1, first);
+            pStatement.setString(2, last);
+            pStatement.setString(3, username);
+            pStatement.setString(4, pass);
+
+            pStatement.executeUpdate();
+
         } catch (SQLException se) {
             se.printStackTrace();
         } catch (ClassNotFoundException e) {
