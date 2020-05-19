@@ -1,11 +1,17 @@
 package main.constrClasses;
 
-import com.sun.tools.javac.comp.Todo;
 
+import java.sql.Timestamp;
+
+/**
+ * TODO CLASS
+ * CREATES STRUCTURE FOR TODO DATA
+ *
+ */
 public class ToDo {
 
     private String task;
-    private long timeDate;
+    private Timestamp timeDate;
     private String taskDesc;
 
     // empty constructor
@@ -14,7 +20,7 @@ public class ToDo {
     }
 
     // constructor
-    public ToDo(String task, long timeDate, String taskDesc) {
+    public ToDo(String task, Timestamp timeDate, String taskDesc, String toDo) {
         this.task = task;
         this.timeDate = timeDate;
         this.taskDesc = taskDesc;
@@ -33,11 +39,11 @@ public class ToDo {
         this.task = task;
     }
 
-    public long getTimeDate() {
+    public Timestamp getTimeDate() {
         return timeDate;
     }
 
-    public void setTimeDate(long timeDate) {
+    public void setTimeDate(Timestamp timeDate) {
         this.timeDate = timeDate;
     }
 

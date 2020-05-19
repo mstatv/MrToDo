@@ -23,7 +23,7 @@ public class DBconstants {
     // tasks column names
     public static final String T_TASKNUM = "taskNum";
     public static final String T_USERID = "userID";
-    public static final String T_TODO = "task";
+    public static final String T_TODO = "ToDo";
     public static final String T_TIMEDATE = "timeDate";
     public static final String T_TASKDESC = "taskDesc";
 

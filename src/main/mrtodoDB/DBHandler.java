@@ -1,5 +1,7 @@
 package main.mrtodoDB;
 
+import com.sun.tools.javac.comp.Todo;
+import main.constrClasses.ToDo;
 import main.constrClasses.User;
 
 import java.sql.*;
@@ -95,6 +97,33 @@ public class DBHandler extends DBconfig {
 
         // return query results
         return resSet;
+    }
+
+    // saving tasks to database
+    public void pushToDo(ToDo toDo) {
+
+        // using DB constants creating statement to pass through to database
+        String write = "INSERT INTO " + DBconstants.MRTODO_TASKS + "(" + DBconstants.T_USERID + DBconstants.T_TIMEDATE
+                + "," + DBconstants.T_TASKDESC + "," + DBconstants.T_TODO + ")" + "VALUES(?, ?, ?, ?)";
+
+        try {
+
+            PreparedStatement pStatement = getDBConnection().prepareStatement(write);
+
+            // statement -> set string for db entry
+            pStatement.setInt(1, toDo.); //TODO: create method to get USDERID number...
+            pStatement.setTimestamp(2, toDo.getTimeDate());
+            pStatement.setString(3, toDo.getTaskDesc());
+            pStatement.setString(4, toDo.getTask());
+
+            pStatement.executeUpdate();
+
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

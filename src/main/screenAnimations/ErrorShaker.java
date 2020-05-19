@@ -4,6 +4,10 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
+
+/**
+ * ERROR SHAKE ANIMATION CLASS
+ */
 public class ErrorShaker {
 
     // private TranslateTransition object

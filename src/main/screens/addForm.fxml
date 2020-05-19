@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="450.0" prefWidth="615.0" style="-fx-background-color: #a6bfcc;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controls.AddFormController">
+   <children>
+      <JFXTextField fx:id="addToDoField" focusColor="#9575cd" layoutX="68.0" layoutY="128.0" prefHeight="54.0" prefWidth="479.0" promptText="ToDo" unFocusColor="BLACK" />
+      <JFXTextField fx:id="addDescField" focusColor="#9575cd" layoutX="68.0" layoutY="213.0" prefHeight="54.0" prefWidth="479.0" promptText="Description" unFocusColor="BLACK" />
+      <JFXButton fx:id="saveToDo" layoutX="154.0" layoutY="316.0" prefHeight="27.0" prefWidth="308.0" style="-fx-background-color: #9575cd #9575cd;" text="Save">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

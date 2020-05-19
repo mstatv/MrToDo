@@ -1,5 +1,11 @@
 package main.constrClasses;
 
+
+/**
+ * USER CLASS
+ * CREATES 'FRAMEWORK' FOR USER DATA CONFIG
+ *
+ */
 public class User {
 
     private String firstName;

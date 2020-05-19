@@ -20,6 +20,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+
+/**
+ * LOGIN SCREEN CONTROLS
+ */
 public class LoginController {
 
     @FXML

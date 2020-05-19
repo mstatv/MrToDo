@@ -10,6 +10,10 @@ import main.mrtodoDB.DBHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+/**
+ * REGISTER SCREEN CONTROLS
+ */
 public class RegisterController {
 
     @FXML
