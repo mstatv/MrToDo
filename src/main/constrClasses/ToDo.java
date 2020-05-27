@@ -10,9 +10,10 @@ import java.sql.Timestamp;
  */
 public class ToDo {
 
-    private String task;
+    private String toDo;
     private Timestamp timeDate;
     private String taskDesc;
+    private int uID;
 
     // empty constructor
     public ToDo() {
@@ -20,8 +21,8 @@ public class ToDo {
     }
 
     // constructor
-    public ToDo(String task, Timestamp timeDate, String taskDesc, String toDo) {
-        this.task = task;
+    public ToDo(Timestamp timeDate, String taskDesc, String toDo) {
+        this.toDo = toDo;
         this.timeDate = timeDate;
         this.taskDesc = taskDesc;
     }
@@ -31,12 +32,12 @@ public class ToDo {
      * for 'ToDo' Class
      * @return
      */
-    public String getTask() {
-        return task;
+    public String getToDo() {
+        return toDo;
     }
 
-    public void setTask(String task) {
-        this.task = task;
+    public void setToDo(String toDo) {
+        this.toDo = toDo;
     }
 
     public Timestamp getTimeDate() {
@@ -51,7 +52,15 @@ public class ToDo {
         return taskDesc;
     }
 
-    public void setTaskDesc(String taskDesc) {
+    public void setTodoDesc(String taskDesc) {
         this.taskDesc = taskDesc;
+    }
+
+    public int getuID() {
+        return uID;
+    }
+
+    public void setuID(int uID) {
+        this.uID = uID;
     }
 }

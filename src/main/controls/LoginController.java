@@ -3,13 +3,11 @@ package main.controls;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import com.mysql.cj.protocol.Resultset;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import main.constrClasses.ToDo;
 import main.constrClasses.User;
 import main.mrtodoDB.DBHandler;
 import main.screenAnimations.ErrorShaker;
@@ -43,6 +41,8 @@ public class LoginController {
 
     @FXML
     private JFXButton registerButton;
+
+    private int uID;
 
     // init DBhandler
     private DBHandler dbHandler = new DBHandler();
@@ -78,6 +78,7 @@ public class LoginController {
                     count++;
 
                     String uFname = uRow.getString("firstName");
+                    uID = uRow.getInt("userId");
                     System.out.println("User: " + uFname);
 
                 }
@@ -155,6 +156,11 @@ public class LoginController {
         Parent root = loader.getRoot();
         Stage secStage = new Stage();
         secStage.setScene(new Scene(root));
+
+        // pass userid to controller
+        AddToDoController addToDoController = loader.getController();
+        addToDoController.setUID(uID);
+
         secStage.showAndWait();
 
     }

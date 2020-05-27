@@ -18,6 +18,8 @@ public class AddFormController {
 
     private DBHandler dbHandler;
 
+    private int uID;
+
     @FXML
     private ResourceBundle resources;
 
@@ -50,15 +52,39 @@ public class AddFormController {
             Calendar calendar = Calendar.getInstance();
             java.sql.Timestamp timestamp = new java.sql.Timestamp(calendar.getTimeInMillis());
 
-            // push to db
-            toDo.setTaskDesc("Test"); // test with db change to field
-            toDo.setTask("test title"); // test with db change to field
-            toDo.setTimeDate(timestamp);
-            dbHandler.pushToDo(toDo);
+            // auto put task to DB
+            String todoText = addToDoField.getText().trim();
+            String todoDesc = addDescField.getText().trim();
+
+            if(!todoText.equals("") || !todoDesc.equals("")) {
+
+                toDo.setuID(AddToDoController.uID);
+                toDo.setTimeDate(timestamp);
+                toDo.setTodoDesc(todoDesc);
+                toDo.setToDo(todoText);
+                dbHandler.pushToDo(toDo);
+
+                // message to console
+                System.out.println("Operation Successful.");
+
+            } else {
+                // todo
+            }
+
+
         });
 
 
 
     }
 
+    // getter
+    public int getuID() {
+        return uID;
+    }
+
+    // setter
+    public void setuID(int uID) {
+        this.uID = uID;
+    }
 }

@@ -36,6 +36,8 @@ public class AddToDoController {
     @FXML
     private ImageView addTaskButton;
 
+    public static int uID;
+
     @FXML
     void initialize() {
         assert todoPane != null : "fx:id=\"todoPane\" was not injected: check your FXML file 'addToDo.fxml'.";
@@ -56,8 +58,14 @@ public class AddToDoController {
 
             // try/catch to open addFrom inside of addToDo Screen
             try {
+                // loading add form screen
                 AnchorPane addFormPane = FXMLLoader.load(getClass().getResource("/main/screens/addForm.fxml"));
+
+                // setting UID
+                AddToDoController.uID = getUID();
+
                 todoPane.getChildren().setAll(addFormPane);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -67,4 +75,13 @@ public class AddToDoController {
 
     }
 
+    // sets userID based on increment from DB, at the time User registers
+    public void setUID(int uID) {
+        this.uID = uID;
+    }
+
+    // gets uID
+    public int getUID() {
+        return this.uID;
+    }
 }

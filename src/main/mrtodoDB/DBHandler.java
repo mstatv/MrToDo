@@ -1,6 +1,5 @@
 package main.mrtodoDB;
 
-import com.sun.tools.javac.comp.Todo;
 import main.constrClasses.ToDo;
 import main.constrClasses.User;
 
@@ -103,7 +102,7 @@ public class DBHandler extends DBconfig {
     public void pushToDo(ToDo toDo) {
 
         // using DB constants creating statement to pass through to database
-        String write = "INSERT INTO " + DBconstants.MRTODO_TASKS + "(" + DBconstants.T_USERID + DBconstants.T_TIMEDATE
+        String write = "INSERT INTO " + DBconstants.MRTODO_TASKS + "(" + DBconstants.T_USERID + "," + DBconstants.T_TIMEDATE
                 + "," + DBconstants.T_TASKDESC + "," + DBconstants.T_TODO + ")" + "VALUES(?, ?, ?, ?)";
 
         try {
@@ -111,10 +110,10 @@ public class DBHandler extends DBconfig {
             PreparedStatement pStatement = getDBConnection().prepareStatement(write);
 
             // statement -> set string for db entry
-            pStatement.setInt(1, toDo.); //TODO: create method to get USDERID number...
+            pStatement.setInt(1, toDo.getuID());
             pStatement.setTimestamp(2, toDo.getTimeDate());
             pStatement.setString(3, toDo.getTaskDesc());
-            pStatement.setString(4, toDo.getTask());
+            pStatement.setString(4, toDo.getToDo());
 
             pStatement.executeUpdate();
 
